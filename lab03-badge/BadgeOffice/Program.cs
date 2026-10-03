@@ -58,3 +58,15 @@ int walkTimeMin = (int)distance/(int)walkSpeed/60;
 double walkTimeSec = Math.Round(distance/walkSpeed%60, 0);
 Console.WriteLine($"Walk time: {walkTimeMin} minutes {walkTimeSec} seconds");
 Console.WriteLine(" ");
+
+// part 4
+Console.WriteLine("==================================");
+Console.WriteLine("        ETSU STUDENT BADGE        ");
+Console.WriteLine("==================================");
+Console.WriteLine(" ");
+Console.WriteLine("NAME".PadRight(10) + fullName.ToUpper());
+Console.WriteLine("USERNAME".PadRight(10) + username);
+string idAndCheck = studentID + "-" + studentID%9;
+Console.WriteLine("ID".PadRight(10) + idAndCheck);
+Console.WriteLine($"LOCKER".PadRight(10) + studentLocker);
+Console.WriteLine("WALK".PadRight(10) + walkTimeMin + " min " + walkTimeSec + " sec ");
