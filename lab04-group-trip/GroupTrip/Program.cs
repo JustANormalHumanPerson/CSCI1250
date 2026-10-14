@@ -1,0 +1,93 @@
+﻿/*
+* Name: Jocie Marino
+* Course: CSCI 1250, Section 002
+* Assignment: Lab 04, The Group Trip
+* Date: October 7, 2026
+* Description: Rebuilds the trip calculator with methods and arrays so it
+* reports on a whole group instead of one person.
+*/
+
+
+Console.WriteLine("Welcome to the Trip Calculator!");
+Console.WriteLine(" ");
+
+//miles, MPG, gas prices, total gallons
+Console.Write("How many miles will the round trip be? ");
+double totalMiles = Convert.ToDouble(Console.ReadLine());
+Console.Write("How many miles per gallon does your car get? ");
+double milesPerGallon = Convert.ToDouble(Console.ReadLine());
+Console.Write("How much will gas cost per gallon? $");
+double gasCost = Convert.ToDouble(Console.ReadLine());
+
+//people
+string[] names = { "Ada", "Grace", "Alan", "Katherine" };
+double[] hoursWorked = { 22, 15, 30, 18 };
+double[] hourlyRates = { 13.50, 16.00, 11.20, 14.80 };
+
+//food
+Console.Write("How many pizzas will you purchase? ");
+int totalPizzas = Convert.ToInt32(Console.ReadLine());
+Console.Write("How much does each pizza cost? $");
+double pizzaCost = Convert.ToDouble(Console.ReadLine());
+
+//definitions
+const float TAX_RATE = .18f;
+const int PIZZA_SLICES = 8;
+double fuelCost = FuelCost(totalMiles, milesPerGallon, gasCost);
+double tripTotal = fuelCost+pizzaCost*totalPizzas;
+double slicesEach = totalPizzas*PIZZA_SLICES/names.Length;
+double costPerPerson = tripTotal/names.Length;
+double totalHours = 0;
+double totalTakeHomePay = 0;
+double longest = 0;
+
+//full thing
+Console.WriteLine(" ");
+Console.WriteLine("=== Part 1: The Trip ===");
+Console.WriteLine($"Fuel cost: {fuelCost:C}");
+Console.WriteLine($"Pizza cost: {pizzaCost:C}");
+Console.WriteLine($"Trip total: {tripTotal:C}");
+Console.WriteLine(" ");
+Console.WriteLine("=== Part 2: The Group ===");
+Console.WriteLine($"People going: {names.Length}");
+Console.WriteLine($"Slices each: {slicesEach}");
+Console.WriteLine($"Cost per person: {costPerPerson:C}");
+Console.WriteLine(" ");
+Console.WriteLine("=== Part 3: Who Works How Long ===");
+for (int i = 0; i < names.Length; i++)
+{
+double takeHomePay = TakeHomePay(hoursWorked[i], hourlyRates[i], TAX_RATE);
+double takeHomePayPerHour = takeHomePay/hoursWorked[i];
+double hoursToCover = HoursToCover(costPerPerson, takeHomePayPerHour);
+totalHours = totalHours += hoursWorked[i];
+totalTakeHomePay = totalTakeHomePay += takeHomePay;
+longest = Math.Max(longest, hoursToCover);
+Console.WriteLine($"{names[i]}: takes home {takeHomePay:C} for {hoursWorked[i]} hours, {takeHomePayPerHour:C} per hour, must work {hoursToCover:F2}");
+}
+Console.WriteLine(" ");
+Console.WriteLine($"Total hours worked: {totalHours:F2}");
+Console.WriteLine($"Total take home pay: {totalTakeHomePay:C}");
+Console.WriteLine($"Longest anyone must work {longest:F2}");
+
+//methods
+
+//returns the total cost of gas as double
+static double FuelCost(double miles, double milesPerGallon, double pricePerGallon)
+{
+double totalGallons = miles/milesPerGallon;  
+return totalGallons * pricePerGallon;
+}
+
+//returns take-home pay for one person as double
+static double TakeHomePay(double hours, double hourlyRate, double taxRate)
+{
+double grossPay = hours*hourlyRate;
+double takeHomePay = grossPay-(grossPay*taxRate);
+return takeHomePay;
+}
+
+//returns amount of hours a person would need to work to cover their individual cost as double
+static double HoursToCover(double amountOwed, double takeHomePerHour)
+{
+return amountOwed/takeHomePerHour;
+}
