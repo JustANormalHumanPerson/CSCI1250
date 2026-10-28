@@ -8,11 +8,8 @@
  * practices decisions and one of the four loops.
  */
 
-using System.IO.Compression;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-
+;
+Random rng = new Random(4000);
 
 
 //menu
@@ -73,8 +70,8 @@ Console.WriteLine("=== CSCI 1250 Lab 06 ===");
           do
             {
             //roll 2 six-sided die.
-            int die1 = RandomNumberGenerator.GetInt32(1, 7);
-            int die2 = RandomNumberGenerator.GetInt32(1, 7);
+            int die1 = rng.Next(1, 7);
+            int die2 = rng.Next(1, 7);
 
             Console.WriteLine($"Roll {rollNumber}: {die1} and {die2}, total {die1+die2}. ");
 
