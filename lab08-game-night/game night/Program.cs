@@ -54,11 +54,24 @@ static int TotalPoints(string[] points)
     return totalPoints;
 }
 
-static string HistoryEntry(int night, string winner, int points)
-{
-    Console.WriteLine(players[i].PadRight(11)+points[i]);
-}
+
+Console.WriteLine(players[i].PadRight(11)+points[i]);
 Console.WriteLine($"Leader: {players[LeaderIndex(points)]} with {points[LeaderIndex(points)]}");
 Console.WriteLine($"Season Total: {TotalPoints(points)}");
 Console.WriteLine("")
 
+
+
+
+static int LeaderIndex(string[] points)
+{
+    {
+    static int TotalPoints(string[] points)
+    }
+    return totalPoints;
+}
+
+static string HistoryEntry(int night, string winner, int points)
+{
+    
+}
