@@ -19,6 +19,26 @@ Directory.SetCurrentDirectory(projectFolder);
 
 string[] players = File.ReadAllLines(PLAYERS_FILE);
 string[] points = File.ReadAllLines(POINTS_FILE);
+string[] nightsHistory = File.ReadAllLines(HISTORY_FILE);
+
+//Part 3
+int night = nightsHistory.Length;
+Console.WriteLine("=== GAME NIGHT LEADERBOARD ===");
+if(night == 0)
+{
+    Console.WriteLine("No nights played yet.");
+}
+else
+{
+    Console.WriteLine($"Nights played: {night}");
+    //  foreach: only need to output every string
+    foreach(string nightStr in nightsHistory)
+    {
+        Console.WriteLine("  " + nightStr);
+    }
+}
+Console.WriteLine($"Tonight is Night {++night}");
+Console.WriteLine("");
 
 //part 1
 Console.WriteLine("PLAYER".PadRight(11)+"POINTS");
@@ -91,6 +111,7 @@ Console.WriteLine("");
 
 
 
+
 //please note that i asked my friend for help on the code below and he did not explain well
 
 static int LeaderIndex(string[] points)
@@ -103,5 +124,8 @@ static int LeaderIndex(string[] points)
 
 static string HistoryEntry(int night, string winner, int points)
 {
-    
+    string winnerOutput = $"Night {night}: {winner} won with {points}";
+    return winnerOutput;
 }
+
+//its like 11 pm I give up
