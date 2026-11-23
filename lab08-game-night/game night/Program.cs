@@ -72,7 +72,7 @@ for(int i=0; i < players.Length; i++)
         Console.WriteLine("Points must be from 0 to 20.");
         Console.Write($"Points tonight for {players[i]}: ");
         pointsInput = Console.ReadLine();
-        int.TryParse(pointsInput, out tonight);
+        tonight = Convert.ToInt32(Console.ReadLine());
     }
     if(tonight > tonightWinnerPoints)
     {
@@ -84,7 +84,9 @@ for(int i=0; i < players.Length; i++)
 }
 Console.WriteLine($"Tonight's winner: {players[tonightWinner]} with {tonightWinnerPoints}");
 File.WriteAllLines(POINTS_FILE, points);
-Console.WriteLine($"\nSaved {POINTS_FILE}.\n");
+Console.WriteLine("");
+Console.WriteLine($"Saved {POINTS_FILE}.");
+Console.WriteLine("");
 
 
 
